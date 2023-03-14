@@ -1,0 +1,26 @@
+(define (domain mcd-blocksworld)
+  (:requirements :adl :universal-preconditions :disjunctive-preconditions)
+  (:constants Table)
+  (:predicates (on ?x ?y)
+	       (clear ?x)
+	       (block ?b)
+	       (above ?x ?y))
+  (:action puton
+	     :parameters (?obj ?dst ?src)
+	     :precondition (and (not (= ?obj ?dst)) (not (= ?obj table)) (not (= ?src ?dst))
+				 (on ?obj ?src)
+				 (or (= ?obj Table)
+				      (forall (?b) (imply (block ?b) (not (on ?b ?obj)))))
+				 (or (= ?dst Table)
+				      (forall (?b) (imply (block ?b) (not (on ?b ?dst))))))
+	     :effect
+	     (and (on ?obj ?dst) (not (on ?obj ?src))
+		   (forall (?c)
+			    (when (or (= ?dst ?c) (above ?dst ?c))
+				   (above ?obj ?c)))
+		   (forall (?e)
+			    (when (and (above ?obj ?e) (not (= ?dst ?e))
+					 (not (above ?dst ?e)))
+				   (not (above ?obj ?e)))))))
+				   
+				   

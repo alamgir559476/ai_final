@@ -1,0 +1,56 @@
+(define (problem knights-tour-problem-5x5)
+  (:domain knights-tour)
+
+  ; Define a set of "numbers" 1..8:
+  (:objects n1 n2 n3 n4 n5)
+
+  (:init 
+    ; Initial position of the Knight piece (upper left corner):
+    (at n1 n5)
+    (visited n1 n5)
+
+    ; Here, we have to list all instances of the static
+    ; predicates diff_by_two and diff_by_one:
+    (diff_by_one n1 n2)
+    (diff_by_one n2 n1)
+    (diff_by_one n2 n3)
+    (diff_by_one n3 n2)
+    (diff_by_one n3 n4)
+    (diff_by_one n4 n3)
+    (diff_by_one n4 n5)
+    (diff_by_one n5 n4)
+
+    (diff_by_two n1 n3)
+    (diff_by_two n3 n1)
+    (diff_by_two n2 n4)
+    (diff_by_two n4 n2)
+    (diff_by_two n3 n5)
+    (diff_by_two n5 n3)
+   )
+          
+  (:goal (and (visited n1 n1)
+	      (visited n1 n2)
+	      (visited n1 n3)
+	      (visited n1 n4)
+	      (visited n1 n5)
+	      (visited n2 n1)
+	      (visited n2 n2)
+	      (visited n2 n3)
+	      (visited n2 n4)
+	      (visited n2 n5)
+	      (visited n3 n1)
+	      (visited n3 n2)
+	      (visited n3 n3)
+	      (visited n3 n4)
+	      (visited n3 n5)
+	      (visited n4 n1)
+	      (visited n4 n2)
+	      (visited n4 n3)
+	      (visited n4 n4)
+	      (visited n4 n5)
+	      (visited n5 n1)
+	      (visited n5 n2)
+	      (visited n5 n3)
+	      (visited n5 n4)
+	      (visited n5 n5)))
+  )
